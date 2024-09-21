@@ -18,7 +18,7 @@ function App() {
         setFilterCountries(data);
 
       } catch (error) {
-        setError('Error fetching countries', error);
+        setError('Error fetching countries');
       }
     };
     fetchCountries();
