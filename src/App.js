@@ -6,6 +6,7 @@ function App() {
   const [countriesData, setCountriesData] = useState([]);
   const [search, setSearch] = useState("");
   const [filterCountries, setFilterCountries] = useState([]);
+ const [error, setError] = useState("");
 
   useEffect(() => {
 
@@ -16,8 +17,8 @@ function App() {
         setCountriesData(data);
         setFilterCountries(data);
 
-      } catch (err) {
-        console.err('Error fetching countries', err);
+      } catch (error) {
+        setError('Error fetching countries', error);
       }
     };
     fetchCountries();
@@ -53,7 +54,7 @@ function App() {
             <p>{country.name.common}</p>
           </div>
         ))}
-        {filterCountries.length === 0 && <p>No countries found</p>}
+        {error && <p className="errorMessage">{error}</p>}
       </div>
     </div>
 
