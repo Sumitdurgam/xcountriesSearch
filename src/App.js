@@ -18,7 +18,6 @@ function App() {
 
       } catch (err) {
         console.err('Error fetching countries', err);
-
       }
     };
     fetchCountries();
