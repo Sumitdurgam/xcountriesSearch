@@ -1,3 +1,4 @@
+import axios from "axios";
 import "./App.css";
 import { useEffect, useState } from "react";
 // import CardItem from "./CardItem";
@@ -12,13 +13,12 @@ function App() {
 
     const fetchCountries = async () => {
       try {
-        const response = await fetch("https://restcountries.com/v3.1/all");
-        const data = await response.json();
-        setCountriesData(data);
-        setFilterCountries(data);
-
+        const response = await axios.get("https://restcountries.com/v3.1/all");
+        setCountriesData(response.data);
+        setFilterCountries(response.data);
       } catch (error) {
         setError('Error fetching countries');
+        console.error('API Error:', error.message);
       }
     };
     fetchCountries();
@@ -57,9 +57,7 @@ function App() {
         {error && <p className="errorMessage">{error}</p>}
       </div>
     </div>
-
   )
-
 };
 
 export default App;
